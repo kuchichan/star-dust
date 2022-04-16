@@ -1,0 +1,6 @@
+-c requirements.txt
+ipython
+pytest
+black
+pylint
+mypy

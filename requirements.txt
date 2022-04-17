@@ -18,8 +18,12 @@ h11==0.13.0
     # via uvicorn
 idna==3.3
     # via anyio
-pydantic==1.9.0
-    # via fastapi
+pydantic[dotenv]==1.9.0
+    # via
+    #   -r requirements.in
+    #   fastapi
+python-dotenv==0.20.0
+    # via pydantic
 sniffio==1.2.0
     # via anyio
 sqlalchemy[asyncio]==1.4.35

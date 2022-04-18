@@ -18,9 +18,12 @@ AsyncScopedSession = async_scoped_session(async_session_factory, scopefunc=curre
 
 
 @asynccontextmanager
-async def get_connection():
+async def get_db():
     session = AsyncScopedSession()
     try:
         yield session
+    except:
+        await session.rollback()
+        raise
     finally:
         await session.remove()

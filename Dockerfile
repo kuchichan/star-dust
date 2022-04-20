@@ -1,4 +1,4 @@
-FROM python:3.9-slim as backend 
+FROM python:3.9-slim as backend
 
 ENV PYTHONBUFFERED=1
 
@@ -17,13 +17,13 @@ USER staruser
 
 COPY requirements.txt requirements-dev.txt /tmp/
 
-ARG INSTALL_DEV=true 
+ARG INSTALL_DEV=true
 ARG PIP_OPTS="'--no-cache-dir --no-deps'"
 RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then pip-sync /tmp/requirements.txt --pip-args $PIP_OPTS ; \
              else pip-sync /tmp/requirements.txt /tmp/requirements-dev.txt '$PIP_OPTS' ; fi"                                                                                                         
 COPY ./star_dust ./app
 
-EXPOSE 8080 
+EXPOSE 8080
 
 CMD ["python","-m", "uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]
 

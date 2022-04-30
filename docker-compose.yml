@@ -1,0 +1,27 @@
+services:
+  app:
+    image: star-dust:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        INSTALL_DEV: "true"
+    environment:
+      DATABASE_DSN: postgresql+asyncpg://star-dust:password@database:5432/star-dust
+    ports:
+      - 8081:8080
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14.2
+    ports:
+      - 54042:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=star-dust
+    volumes:
+      - persistent_db:/var/lib/postgresql/data
+
+volumes:
+  persistent_db:

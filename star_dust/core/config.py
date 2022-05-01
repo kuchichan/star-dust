@@ -1,6 +1,4 @@
-from pydantic import BaseSettings
-from pydantic.fields import Field
-from pydantic.networks import PostgresDsn
+from pydantic import BaseSettings, Field, PostgresDsn
 
 
 class Settings(BaseSettings):

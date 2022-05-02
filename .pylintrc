@@ -1,5 +1,6 @@
 [MASTER]
 extension-pkg-whitelist=pydantic
+ignore-paths=^alembic/.*$
 
 [MESSAGES CONTROL]
 disable=

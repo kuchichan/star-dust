@@ -1,10 +1,10 @@
 from typing import cast
 
 import pytest
+from pydantic.networks import PostgresDsn
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncConnection
 from sqlalchemy.ext.asyncio.engine import create_async_engine
-from pydantic.networks import PostgresDsn
 
 from star_dust.core.config import settings
 

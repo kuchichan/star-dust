@@ -3,5 +3,4 @@ uvicorn
 asyncpg
 sqlalchemy[asyncio]
 pydantic[dotenv]
-sqlalchemy-stubs
 alembic

@@ -39,5 +39,5 @@ repos:
       types: [python]
       args:
         [
-          "--rcfile=.pylintrc", # Link to your config file
+          "--rcfile=pyproject.toml", # Link to your config file
         ]

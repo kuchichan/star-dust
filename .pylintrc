@@ -1,8 +1,0 @@
-[MASTER]
-extension-pkg-whitelist=pydantic
-ignore-paths=^alembic/.*$
-
-[MESSAGES CONTROL]
-disable=
-    missing-docstring,
-    too-few-public-methods,

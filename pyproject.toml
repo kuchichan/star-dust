@@ -1,0 +1,16 @@
+[tool.isort]
+profile = "black"
+known_third_party = ["fastapi", "pydantic", "pytest", "sqlalchemy"]
+
+[tool.pylint.master]
+extension-pkg-whitelist = "pydantic"
+ignore-paths = "^alembic/.*$"
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-docstring",
+    "too-few-public-methods",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode="auto"

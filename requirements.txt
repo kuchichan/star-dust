@@ -10,6 +10,8 @@ anyio==3.5.0
     # via starlette
 asgiref==3.5.0
     # via uvicorn
+asyncpg==0.25.0
+    # via -r requirements.in
 click==8.0.4
     # via uvicorn
 fastapi==0.75.0
@@ -24,6 +26,10 @@ mako==1.2.0
     # via alembic
 markupsafe==2.1.1
     # via mako
+mypy==0.950
+    # via sqlalchemy-stubs
+mypy-extensions==0.4.3
+    # via mypy
 pydantic[dotenv]==1.9.0
     # via
     #   -r requirements.in
@@ -36,9 +42,16 @@ sqlalchemy[asyncio]==1.4.35
     # via
     #   -r requirements.in
     #   alembic
+sqlalchemy-stubs==0.4
+    # via -r requirements.in
 starlette==0.17.1
     # via fastapi
+tomli==2.0.1
+    # via mypy
 typing-extensions==4.1.1
-    # via pydantic
+    # via
+    #   mypy
+    #   pydantic
+    #   sqlalchemy-stubs
 uvicorn==0.17.6
     # via -r requirements.in

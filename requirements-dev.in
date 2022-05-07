@@ -1,6 +1,7 @@
 -c requirements.txt
 ipython
 pytest
+pytest-asyncio
 black
 pylint
 mypy

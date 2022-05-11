@@ -1,14 +1,11 @@
-name: Lint and Tests
 on:
-  workflow_call:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
-  install-and-build:
-    runs-on: ubuntu-latest
+  call-workflow:
+    uses: ./.github/workflows/tests.yml
 
     services:
       postgres:
@@ -23,24 +20,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
-      with:
-        python-version: '3.9'
-        cache: 'pip'
-    - run: pip install -r requirements.txt
-    - run: pip install -r requirements-dev.txt
-  run-tests:
-    runs-on: ubuntu-latest
-    needs: install-and-build
     steps:
       - run: pytest
-
-  black-and-linters:
-    runs-on: ubuntu-latest
-    needs: install-and-build
-    steps:
       - run: black . --check
       - run: mypy star_dust tests --ignore-missing-imports

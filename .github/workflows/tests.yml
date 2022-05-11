@@ -1,6 +1,5 @@
 name: Lint and Tests
 on:
-  workflow_call:
   push:
     branches:
       - master
@@ -9,6 +8,22 @@ on:
 jobs:
   install-and-build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    services:
+      postgres:
+        image: postgres:14.2
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: star-dust
+        ports:
+          - 54042:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v3
@@ -16,5 +31,14 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pip'
+
     - run: pip install -r requirements.txt
     - run: pip install -r requirements-dev.txt
+    - name: Run tests
+      run: pytest
+    - name: Black
+      run: black . --check
+    - name: Linting
+      run: pylint star_dust tests
+    - name: Typing (mypy)
+      run: mypy star_dust tests --ignore-missing-imports

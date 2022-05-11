@@ -18,7 +18,7 @@ jobs:
           POSTGRES_PASSWORD: password
           POSTGRES_USER: star-dust
         ports:
-          - 54042:5432
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -36,7 +36,7 @@ jobs:
     - run: pip install -r requirements-dev.txt
     - name: Run tests
       env:
-        DATABASE_DSN: postgresql+asyncpg://star-dust:password@database:5432/star-dust
+        DATABASE_DSN: postgresql+asyncpg://star-dust:password@localhost:5432/star-dust
       run: pytest
     - name: Black
       run: black . --check

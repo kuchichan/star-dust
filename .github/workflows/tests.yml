@@ -31,3 +31,15 @@ jobs:
         cache: 'pip'
     - run: pip install -r requirements.txt
     - run: pip install -r requirements-dev.txt
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: install-and-build
+    steps:
+      - run: pytest
+
+  black-and-linters:
+    runs-on: ubuntu-latest
+    needs: install-and-build
+    steps:
+      - run: black . --check
+      - run: mypy star_dust tests --ignore-missing-imports

@@ -10,20 +10,6 @@ jobs:
   install-and-build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:14.2
-        env:
-          POSTGRES_PASSWORD: password
-          POSTGRES_USER: star-dust
-        ports:
-          - 54042:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
@@ -32,15 +18,3 @@ jobs:
         cache: 'pip'
     - run: pip install -r requirements.txt
     - run: pip install -r requirements-dev.txt
-  run-tests:
-    runs-on: ubuntu-latest
-    needs: install-and-build
-    steps:
-      - run: pytest
-
-  black-and-linters:
-    runs-on: ubuntu-latest
-    needs: install-and-build
-    steps:
-      - run: black . --check
-      - run: mypy star_dust tests --ignore-missing-imports

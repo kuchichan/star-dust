@@ -1,0 +1,33 @@
+name: Lint and Tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  install-and-build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:14.2
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: star-dust
+        ports:
+          - 54042:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    - run: pip install -r requirements-dev.txt

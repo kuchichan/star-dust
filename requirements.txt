@@ -12,8 +12,18 @@ asgiref==3.5.0
     # via uvicorn
 asyncpg==0.25.0
     # via -r requirements.in
+bcrypt==3.2.2
+    # via passlib
+cffi==1.15.0
+    # via
+    #   bcrypt
+    #   cryptography
 click==8.0.4
     # via uvicorn
+cryptography==37.0.2
+    # via python-jose
+ecdsa==0.17.0
+    # via python-jose
 fastapi==0.75.0
     # via -r requirements.in
 greenlet==1.1.2
@@ -26,12 +36,26 @@ mako==1.2.0
     # via alembic
 markupsafe==2.1.1
     # via mako
+passlib[bcrypt]==1.7.4
+    # via -r requirements.in
+pyasn1==0.4.8
+    # via
+    #   python-jose
+    #   rsa
+pycparser==2.21
+    # via cffi
 pydantic[dotenv]==1.9.0
     # via
     #   -r requirements.in
     #   fastapi
 python-dotenv==0.20.0
     # via pydantic
+python-jose[cryptography]==3.3.0
+    # via -r requirements.in
+rsa==4.8
+    # via python-jose
+six==1.16.0
+    # via ecdsa
 sniffio==1.2.0
     # via anyio
 sqlalchemy[asyncio]==1.4.35

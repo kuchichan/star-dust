@@ -38,9 +38,9 @@ jobs:
       env:
         DATABASE_DSN: postgresql+asyncpg://star-dust:password@localhost:5432/star-dust
       run: pytest
-    - name: Black
-      run: black . --check
-    - name: Linting
-      run: pylint star_dust tests
+    - name: Black & Lint
+      run:
+        black . --check
+        pylint star_dust tests
     - name: Typing (mypy)
       run: mypy star_dust tests --ignore-missing-imports

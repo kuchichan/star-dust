@@ -4,3 +4,5 @@ asyncpg
 sqlalchemy[asyncio]
 pydantic[dotenv]
 alembic
+python-jose[cryptography]
+passlib[bcrypt]

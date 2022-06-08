@@ -39,7 +39,7 @@ jobs:
         DATABASE_DSN: postgresql+asyncpg://star-dust:password@localhost:5432/star-dust
       run: pytest
     - name: Black & Lint
-      run:
+      run: |
         black . --check
         pylint star_dust tests
     - name: Typing (mypy)

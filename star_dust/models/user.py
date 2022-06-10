@@ -1,6 +1,12 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Boolean, Column, Identity, Integer, String
+from sqlalchemy.orm import relationship
 
 from star_dust.db.base_class import Base
+
+if TYPE_CHECKING:
+    from .account import Account  # noqa: F401
 
 
 class User(Base):
@@ -10,3 +16,5 @@ class User(Base):
     hashed_password = Column(String, index=True, nullable=False)
     is_superuser = Column(Boolean, default=False)
     is_active = Column(Boolean, default=False)
+
+    account = relationship("Account", backpopulates="user", uselist=False)

@@ -17,4 +17,4 @@ class User(Base):
     is_superuser = Column(Boolean, default=False)
     is_active = Column(Boolean, default=False)
 
-    account = relationship("Account", backpopulates="user", uselist=False)
+    account = relationship("Account", back_populates="user", uselist=False)

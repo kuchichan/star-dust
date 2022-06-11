@@ -36,6 +36,10 @@ mako==1.2.0
     # via alembic
 markupsafe==2.1.1
     # via mako
+mypy==0.961
+    # via sqlalchemy
+mypy-extensions==0.4.3
+    # via mypy
 passlib[bcrypt]==1.7.4
     # via -r requirements.in
 pyasn1==0.4.8
@@ -58,13 +62,20 @@ six==1.16.0
     # via ecdsa
 sniffio==1.2.0
     # via anyio
-sqlalchemy[asyncio]==1.4.35
+sqlalchemy[asyncio,mypy]==1.4.35
     # via
     #   -r requirements.in
     #   alembic
+sqlalchemy2-stubs==0.0.2a23
+    # via sqlalchemy
 starlette==0.17.1
     # via fastapi
+tomli==2.0.1
+    # via mypy
 typing-extensions==4.1.1
-    # via pydantic
+    # via
+    #   mypy
+    #   pydantic
+    #   sqlalchemy2-stubs
 uvicorn==0.17.6
     # via -r requirements.in

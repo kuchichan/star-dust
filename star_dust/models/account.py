@@ -1,13 +1,10 @@
-from typing import TYPE_CHECKING
-
 from sqlalchemy import Column, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.sqltypes import Numeric
 
 from star_dust.db.base_class import Base
 
-if TYPE_CHECKING:
-    from .user import User  # noqa: F401
+from .user import User
 
 
 class Account(Base):
@@ -17,4 +14,4 @@ class Account(Base):
     dark_matter = Column(Integer)
     dust_dollars = Column(Numeric(precision=2))
 
-    user = relationship("User", back_populates="account")
+    user: User = relationship(User, back_populates="account")

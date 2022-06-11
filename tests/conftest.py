@@ -1,22 +1,20 @@
-from typing import cast
+from typing import Any, AsyncGenerator
 
 import pytest
 from pydantic.networks import PostgresDsn
 from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncConnection
 from sqlalchemy.ext.asyncio.engine import create_async_engine
 
 from star_dust.core.config import settings
 
 
 @pytest.fixture
-async def create_test_db():
+async def create_test_db() -> AsyncGenerator[str, Any]:
     main_db_dsn = settings.database_dsn
     engine = create_async_engine(main_db_dsn)
     db_name = "test_db"
 
     async with engine.connect() as conn:
-        conn = cast(AsyncConnection, conn)  # Poor
         await conn.execute(text("commit"))
         await conn.execute(text(f"create database {db_name}"))
 
@@ -30,7 +28,6 @@ async def create_test_db():
     )
 
     async with engine.connect() as conn:
-        conn = cast(AsyncConnection, conn)
         await conn.execute(text("commit"))
         await conn.execute(text(f"drop database {db_name}"))
 

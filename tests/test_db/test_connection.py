@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio.engine import create_async_engine
 
 
 @pytest.mark.asyncio
-async def test_connection_to_test_db(create_test_db):
+async def test_connection_to_test_db(create_test_db: str) -> None:
     engine = create_async_engine(create_test_db)
     conn = engine.connect()
     await conn.start()

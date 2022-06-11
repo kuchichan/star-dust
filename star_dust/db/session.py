@@ -1,5 +1,6 @@
 from asyncio import current_task
 from contextlib import asynccontextmanager
+from typing import AsyncIterator
 
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -18,7 +19,7 @@ AsyncScopedSession = async_scoped_session(async_session_factory, scopefunc=curre
 
 
 @asynccontextmanager
-async def get_db():
+async def get_db() -> AsyncIterator[AsyncSession]:
     session = AsyncScopedSession()
     try:
         yield session
@@ -26,4 +27,4 @@ async def get_db():
         await session.rollback()
         raise
     finally:
-        await session.remove()
+        await session.close()

@@ -29,7 +29,7 @@ repos:
     -   id: mypy
         args: [--ignore-missing-imports]
         additional_dependencies:
-            - 'sqlalchemy-stubs'
+            - 'sqlalchemy[mypy]'
             - 'pydantic'
 - repo: local
   hooks:

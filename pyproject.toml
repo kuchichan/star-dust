@@ -18,3 +18,5 @@ asyncio_mode="auto"
 
 [tool.pyright]
 stubPath = "stubs"
+useLibraryCodeForTypes = true
+ignore = ["star_dust/models"]

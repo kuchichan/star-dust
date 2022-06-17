@@ -15,3 +15,6 @@ disable = [
 
 [tool.pytest.ini_options]
 asyncio_mode="auto"
+
+[tool.pyright]
+stubPath = "stubs"

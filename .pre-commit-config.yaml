@@ -29,8 +29,8 @@ repos:
     -   id: mypy
         args: [--ignore-missing-imports]
         additional_dependencies:
-            - 'sqlalchemy'
-            - 'sqlalchemy2-stubs'
+            - 'sqlalchemy-stubs'
+            - 'pydantic'
 - repo: local
   hooks:
     - id: pylint

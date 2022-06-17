@@ -46,6 +46,7 @@ mypy==0.961
     # via
     #   -c requirements.txt
     #   -r requirements-dev.in
+    #   sqlalchemy-stubs
 mypy-extensions==0.4.3
     # via
     #   -c requirements.txt
@@ -91,6 +92,8 @@ six==1.16.0
     # via
     #   -c requirements.txt
     #   asttokens
+sqlalchemy-stubs==0.4
+    # via -r requirements-dev.in
 stack-data==0.2.0
     # via ipython
 tomli==2.0.1
@@ -111,6 +114,7 @@ typing-extensions==4.1.1
     #   black
     #   mypy
     #   pylint
+    #   sqlalchemy-stubs
 wcwidth==0.2.5
     # via prompt-toolkit
 wrapt==1.14.0

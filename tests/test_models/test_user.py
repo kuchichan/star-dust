@@ -15,7 +15,7 @@ async def test_user_table_connection(db_session: AsyncSession):
         db_session.add(user)
         await db_session.commit()
 
-    stmt = select(User).where(User.id == 1)
+    stmt = select(User).where(User.id == 1)  # type: ignore
     result = await db_session.execute(stmt)
     db_user = result.first()
 

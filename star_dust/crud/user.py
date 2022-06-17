@@ -13,7 +13,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             hashed_password=get_password_hash(obj_in.password),
             nickname=obj_in.nickname,
             is_superuser=obj_in.is_superuser,
-        )  # type: ignore
+        )
+
         session_db.add(db_obj)
         await session_db.commit()
         await session_db.refresh(db_obj)

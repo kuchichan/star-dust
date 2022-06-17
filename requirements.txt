@@ -22,8 +22,12 @@ click==8.0.4
     # via uvicorn
 cryptography==37.0.2
     # via python-jose
+dnspython==2.2.1
+    # via email-validator
 ecdsa==0.17.0
     # via python-jose
+email-validator==1.2.1
+    # via pydantic
 fastapi==0.75.0
     # via -r requirements.in
 greenlet==1.1.2
@@ -31,7 +35,9 @@ greenlet==1.1.2
 h11==0.13.0
     # via uvicorn
 idna==3.3
-    # via anyio
+    # via
+    #   anyio
+    #   email-validator
 mako==1.2.0
     # via alembic
 markupsafe==2.1.1
@@ -48,7 +54,7 @@ pyasn1==0.4.8
     #   rsa
 pycparser==2.21
     # via cffi
-pydantic[dotenv]==1.9.0
+pydantic[dotenv,email]==1.9.0
     # via
     #   -r requirements.in
     #   fastapi

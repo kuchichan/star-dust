@@ -2,7 +2,7 @@ fastapi
 uvicorn
 asyncpg
 sqlalchemy[asyncio,mypy]
-pydantic[dotenv]
+pydantic[dotenv,email]
 alembic
 python-jose[cryptography]
 passlib[bcrypt]

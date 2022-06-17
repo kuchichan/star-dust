@@ -10,6 +10,7 @@ ignore-paths = "^alembic/.*$"
 disable = [
     "missing-docstring",
     "too-few-public-methods",
+    "invalid-name",
 ]
 
 [tool.pytest.ini_options]

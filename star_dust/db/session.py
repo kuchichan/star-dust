@@ -1,6 +1,5 @@
 from asyncio import current_task
-from contextlib import asynccontextmanager
-from typing import AsyncIterator
+from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
@@ -16,8 +15,7 @@ async_session_factory = sessionmaker(engine, expire_on_commit=False, class_=Asyn
 AsyncScopedSession = async_scoped_session(async_session_factory, scopefunc=current_task)
 
 
-@asynccontextmanager
-async def get_db() -> AsyncIterator[AsyncSession]:
+async def get_db() -> AsyncGenerator:
     session = AsyncScopedSession()
     try:
         yield session

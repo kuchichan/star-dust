@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     debug: bool = False
     secret_key: str = secrets.token_urlsafe(32)
     access_token_expire_minutes: int = 24 * 60 * 7  # 7 days
+    api_v1_str: str = "/api/v1"
 
     class Config:
         env_file = ".env"

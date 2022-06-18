@@ -1,6 +1,6 @@
 [tool.isort]
 profile = "black"
-known_third_party = ["fastapi", "pydantic", "pytest", "sqlalchemy"]
+known_third_party = ["fastapi", "jose", "passlib", "pydantic", "pytest", "sqlalchemy"]
 
 [tool.pylint.master]
 extension-pkg-whitelist = "pydantic"

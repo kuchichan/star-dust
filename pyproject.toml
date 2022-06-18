@@ -20,3 +20,6 @@ asyncio_mode="auto"
 stubPath = "stubs"
 useLibraryCodeForTypes = true
 ignore = ["star_dust/models"]
+
+[tool.black]
+line-length=89

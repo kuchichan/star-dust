@@ -7,9 +7,7 @@ from star_dust.models.user import User
 
 @pytest.mark.asyncio
 async def test_user_table_connection(db_session: AsyncSession):
-    user = User(
-        id=1, nickname="hello", email="hehe@example.com", hashed_password="hehe"
-    )
+    user = User(id=1, nickname="hello", email="hehe@example.com", hashed_password="hehe")
 
     async with db_session.begin():
         db_session.add(user)

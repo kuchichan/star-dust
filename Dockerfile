@@ -29,6 +29,6 @@ ENV PATH "$PATH:/home/staruser/.local/bin"
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "docker-entrypoint.sh", "--"]
 
 CMD ["python","-m", "uvicorn", "star_dust.main:app", "--reload", "--host", "0.0.0.0", "--port", "8080"]

@@ -1,6 +1,7 @@
 services:
   app:
     image: star-dust:dev
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,6 +14,8 @@ services:
       - 8081:8080
     depends_on:
       - database
+    volumes:
+      - ./star_dust:/home/star-dust/star_dust
 
   database:
     image: postgres:14.2

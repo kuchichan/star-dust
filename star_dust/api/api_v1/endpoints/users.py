@@ -4,6 +4,7 @@ from fastapi.param_functions import Body, Depends
 from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
+from star_dust.api.deps import get_current_user
 from star_dust.crud.user import user as crud_user
 from star_dust.db.session import get_db
 from star_dust.schemas.user import User, UserCreate
@@ -29,3 +30,8 @@ async def open_registration(
     user = await crud_user.create(db, obj_in=user_in)
 
     return user
+
+
+@router.get("/me", response_model=User)
+async def read_users_me(current_user=Depends(get_current_user)):
+    return current_user

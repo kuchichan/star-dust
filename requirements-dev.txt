@@ -16,6 +16,10 @@ backcall==0.2.0
     # via ipython
 black==22.3.0
     # via -r requirements-dev.in
+certifi==2022.6.15
+    # via requests
+charset-normalizer==2.0.12
+    # via requests
 click==8.0.4
     # via
     #   -c requirements.txt
@@ -26,6 +30,14 @@ dill==0.3.4
     # via pylint
 executing==0.8.3
     # via stack-data
+factory-boy==3.2.1
+    # via -r requirements-dev.in
+faker==13.14.0
+    # via factory-boy
+idna==3.3
+    # via
+    #   -c requirements.txt
+    #   requests
 iniconfig==1.1.1
     # via pytest
 ipython==8.2.0
@@ -87,10 +99,15 @@ pytest==7.1.1
     #   pytest-asyncio
 pytest-asyncio==0.18.3
     # via -r requirements-dev.in
+python-dateutil==2.8.2
+    # via faker
+requests==2.28.0
+    # via -r requirements-dev.in
 six==1.16.0
     # via
     #   -c requirements.txt
     #   asttokens
+    #   python-dateutil
 stack-data==0.2.0
     # via ipython
 tomli==2.0.1
@@ -111,6 +128,8 @@ typing-extensions==4.1.1
     #   black
     #   mypy
     #   pylint
+urllib3==1.26.9
+    # via requests
 wcwidth==0.2.5
     # via prompt-toolkit
 wrapt==1.14.0

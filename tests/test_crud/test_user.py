@@ -28,6 +28,6 @@ async def test_user_crud_class_create_and_get(
     )
     result = await user.create(db_session, obj_in=user_from_api)
 
-    result_get = await user.get(db_session, id_=1)
+    result_get = await user.get(db_session, id_=result.id)
 
     assert result == result_get

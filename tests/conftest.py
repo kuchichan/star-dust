@@ -5,7 +5,8 @@ from asyncio.tasks import current_task
 from typing import Any, AsyncGenerator, cast
 
 import pytest
-from pydantic.networks import PostgresDsn
+from fastapi.testclient import TestClient
+from pydantic.networks import EmailStr, PostgresDsn
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio.engine import AsyncEngine, create_async_engine
 from sqlalchemy.ext.asyncio.scoping import async_scoped_session
@@ -13,8 +14,13 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm.decl_api import registry
 from sqlalchemy.orm.session import sessionmaker
 
+from star_dust.api.deps import get_current_user
 from star_dust.core.config import settings
+from star_dust.crud.user import user as crud_user
 from star_dust.db.base import Base
+from star_dust.db.session import get_db
+from star_dust.main import app
+from star_dust.schemas.user import UserCreate
 
 AsyncScopedSession = async_scoped_session(
     sessionmaker(class_=AsyncSession), scopefunc=current_task
@@ -87,3 +93,40 @@ async def db_session(
     await AsyncScopedSession.remove()
     await transaction.rollback()
     await conn.close()
+
+
+@pytest.fixture(scope="function")
+async def override_get_db(db_session):
+    def wrap():
+        try:
+            yield db_session
+        finally:
+            pass
+
+    return wrap
+
+
+@pytest.fixture
+async def override_get_current_user(db_session):
+    user_in = UserCreate(
+        email=EmailStr("user@example.com"),
+        is_active=True,
+        is_superuser=False,
+        nickname="kuchi",
+        password="hello",
+    )
+    user = await crud_user.create(session_db=db_session, obj_in=user_in)
+
+    def override_get_current_user():
+        return user
+
+    return override_get_current_user
+
+
+@pytest.fixture
+def authorized_client(override_get_db, override_get_current_user):
+    app.dependency_overrides[get_db] = override_get_db
+    app.dependency_overrides[get_current_user] = override_get_current_user
+    client = TestClient(app)
+
+    return client

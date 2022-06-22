@@ -6,3 +6,5 @@ pytest-asyncio
 black
 pylint
 mypy
+factory-boy
+requests

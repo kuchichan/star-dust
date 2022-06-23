@@ -17,4 +17,4 @@ class Account(Base):
     dark_matter = Column(Integer)
     dust_dollars = Column(Numeric(precision=2))
 
-    user: "User" = relationship("User", back_populates="account")  # type: ignore
+    user: "User" = relationship("User", back_populates="account")

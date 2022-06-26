@@ -130,3 +130,14 @@ def authorized_client(override_get_db, override_get_current_user):
     client = TestClient(app)
 
     return client
+
+
+@pytest.fixture
+def exemplary_user():
+    return UserCreate(
+        email=EmailStr("pawel@example.com"),
+        password="hello",
+        is_active=True,
+        is_superuser=True,
+        nickname="kuchi",
+    )

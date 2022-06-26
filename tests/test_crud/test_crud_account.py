@@ -1,5 +1,4 @@
 import pytest
-from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
@@ -12,15 +11,10 @@ from star_dust.schemas.user import UserCreate
 
 
 @pytest.mark.asyncio
-async def test_create_account_with_owner_user(db_session: AsyncSession):
-    user_from_api = UserCreate(
-        email=EmailStr("pawel@example.com"),
-        password="hello",
-        is_active=True,
-        is_superuser=True,
-        nickname="kuchi",
-    )
-    result = await user.create(db_session, obj_in=user_from_api)
+async def test_create_account_with_owner_user(
+    db_session: AsyncSession, exemplary_user: UserCreate
+):
+    result = await user.create(db_session, obj_in=exemplary_user)
 
     account_from_api = AccountCreate()
 

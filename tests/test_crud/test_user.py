@@ -1,5 +1,4 @@
 import pytest
-from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from star_dust.crud.user import user
@@ -17,16 +16,9 @@ async def test_user_crud_class_get_not_existed_user_returns_none(
 
 @pytest.mark.asyncio
 async def test_user_crud_class_create_and_get(
-    db_session: AsyncSession,
+    db_session: AsyncSession, exemplary_user: UserCreate
 ):
-    user_from_api = UserCreate(
-        email=EmailStr("pawel@example.com"),
-        password="hello",
-        is_active=True,
-        is_superuser=True,
-        nickname="kuchi",
-    )
-    result = await user.create(db_session, obj_in=user_from_api)
+    result = await user.create(db_session, obj_in=exemplary_user)
 
     result_get = await user.get(db_session, id_=result.id)
 

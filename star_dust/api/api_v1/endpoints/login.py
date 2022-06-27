@@ -5,8 +5,8 @@ from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
+from star_dust import crud
 from star_dust.core.security import create_access_token
-from star_dust.crud.user import user as crud_user
 from star_dust.db.session import get_db
 from star_dust.schemas import token
 
@@ -17,7 +17,7 @@ router = APIRouter()
 async def login_access_token(
     db: AsyncSession = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
 ) -> Any:
-    user = await crud_user.authenticate(
+    user = await crud.user.authenticate(
         db, email=form_data.username, password=form_data.password
     )
     if not user:

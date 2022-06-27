@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from star_dust.core.security import get_password_hash, verify_password
-from star_dust.crud.base import CRUDBase
+from star_dust.crud.crud_base import CRUDBase
 from star_dust.models.user import User
 from star_dust.schemas.user import UserCreate, UserUpdate
 

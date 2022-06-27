@@ -1,7 +1,7 @@
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
-from star_dust.crud.base import CRUDBase
+from star_dust.crud.crud_base import CRUDBase
 from star_dust.models.account import Account
 from star_dust.schemas.account import AccountCreate, AccountUpdate
 

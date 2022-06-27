@@ -14,9 +14,9 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm.decl_api import registry
 from sqlalchemy.orm.session import sessionmaker
 
+from star_dust import crud
 from star_dust.api.deps import get_current_user
 from star_dust.core.config import settings
-from star_dust.crud.user import user as crud_user
 from star_dust.db.base import Base
 from star_dust.db.session import get_db
 from star_dust.main import app
@@ -115,7 +115,7 @@ async def override_get_current_user(db_session):
         nickname="kuchi",
         password="hello",
     )
-    user = await crud_user.create(session_db=db_session, obj_in=user_in)
+    user = await crud.user.create(session_db=db_session, obj_in=user_in)
 
     def override_get_current_user():
         return user

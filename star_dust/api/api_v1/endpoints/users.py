@@ -4,8 +4,8 @@ from fastapi.param_functions import Body, Depends
 from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
+from star_dust import crud
 from star_dust.api.deps import get_current_user
-from star_dust.crud.user import user as crud_user
 from star_dust.db.session import get_db
 from star_dust.schemas.user import User, UserCreate
 
@@ -19,7 +19,7 @@ async def open_registration(
     email: EmailStr = Body(...),
     nickname: str = Body(None),
 ):
-    db_user = await crud_user.get_user_by_email(db, email)
+    db_user = await crud.user.get_user_by_email(db, email)
 
     if db_user:
         raise HTTPException(
@@ -27,7 +27,7 @@ async def open_registration(
         )
 
     user_in = UserCreate(email=email, nickname=nickname, password=password)
-    user = await crud_user.create(db, obj_in=user_in)
+    user = await crud.user.create(db, obj_in=user_in)
 
     return user
 

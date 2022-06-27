@@ -1,7 +1,7 @@
 import pytest
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
-from star_dust.crud.user import user
+from star_dust import crud
 from star_dust.schemas.user import UserCreate
 
 
@@ -9,7 +9,7 @@ from star_dust.schemas.user import UserCreate
 async def test_user_crud_class_get_not_existed_user_returns_none(
     db_session: AsyncSession,
 ):
-    result = await user.get(db_session, id_=100)
+    result = await crud.user.get(db_session, id_=100)
 
     assert result is None
 
@@ -18,8 +18,8 @@ async def test_user_crud_class_get_not_existed_user_returns_none(
 async def test_user_crud_class_create_and_get(
     db_session: AsyncSession, exemplary_user: UserCreate
 ):
-    result = await user.create(db_session, obj_in=exemplary_user)
+    result = await crud.user.create(db_session, obj_in=exemplary_user)
 
-    result_get = await user.get(db_session, id_=result.id)
+    result_get = await crud.user.get(db_session, id_=result.id)
 
     assert result == result_get

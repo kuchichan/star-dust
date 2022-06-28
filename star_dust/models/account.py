@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class Account(Base):
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"))
     minerals = Column(Integer)
     dark_matter = Column(Integer)

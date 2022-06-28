@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, Optional
 
-from sqlalchemy import Boolean, Column, Integer, String
+from sqlalchemy import Boolean, Column, Identity, Integer, String
 from sqlalchemy.orm import relationship
 
 from star_dust.db.base_class import Base
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class User(Base):
-    id: int = Column(Integer, primary_key=True, index=True)
+    id: int = Column(Integer, Identity(), primary_key=True, index=True)
     nickname: Optional[str] = Column(String, index=True)
     email: str = Column(String, unique=True, index=True, nullable=False)
     hashed_password: str = Column(String, index=True, nullable=False)

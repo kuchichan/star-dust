@@ -15,6 +15,6 @@ class Account(Base):
     user_id = Column(Integer, ForeignKey("users.id", ondelete="SET NULL"))
     minerals = Column(Integer)
     dark_matter = Column(Integer)
-    dust_dollars = Column(Numeric(precision=2))
+    dust_dollars = Column(Numeric(precision=9, scale=2))
 
     user: "User" = relationship("User", back_populates="account")

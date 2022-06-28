@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class AccountBase(BaseModel):
     minerals: int = 500
     dark_matter: int = 500
-    dust_dollars: Decimal = Decimal("10.00")
+    dust_dollars: Decimal = Decimal("10000.00")
 
 
 class AccountCreate(AccountBase):

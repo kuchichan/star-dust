@@ -38,6 +38,8 @@ idna==3.3
     # via
     #   anyio
     #   email-validator
+itsdangerous==2.1.2
+    # via -r requirements.in
 mako==1.2.0
     # via alembic
 markupsafe==2.1.1

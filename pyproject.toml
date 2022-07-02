@@ -11,6 +11,8 @@ disable = [
     "missing-docstring",
     "too-few-public-methods",
     "invalid-name",
+    "no-self-argument",
+    "no-self-use",
 ]
 
 [tool.pytest.ini_options]

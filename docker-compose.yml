@@ -27,5 +27,22 @@ services:
     volumes:
       - persistent_db:/var/lib/postgresql/data
 
+  localstack:
+    image: localstack/localstack:0.14
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:53:53"                # only required for Pro (DNS)
+      - "127.0.0.1:53:53/udp"            # only required for Pro (DNS)
+      - "127.0.0.1:443:443"              # only required for Pro (LocalStack HTTPS Edge Proxy)
+      - "127.0.0.1:4510-4559:4510-4559"  # external service port range
+      - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
+    environment:
+      - DEBUG=1
+      - SERVICES=ses,kinesis
+      - HOST_TMP_FOLDER=/tmp/localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/tmp/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 volumes:
   persistent_db:

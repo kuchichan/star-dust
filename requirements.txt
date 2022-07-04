@@ -14,20 +14,36 @@ asyncpg==0.25.0
     # via -r requirements.in
 bcrypt==3.2.2
     # via passlib
+cachetools==5.2.0
+    # via premailer
+certifi==2022.6.15
+    # via requests
 cffi==1.15.0
     # via
     #   bcrypt
     #   cryptography
+chardet==5.0.0
+    # via emails
+charset-normalizer==2.1.0
+    # via requests
 click==8.0.4
     # via uvicorn
 cryptography==37.0.2
     # via python-jose
+cssselect==1.1.0
+    # via premailer
+cssutils==2.4.2
+    # via
+    #   emails
+    #   premailer
 dnspython==2.2.1
     # via email-validator
 ecdsa==0.17.0
     # via python-jose
 email-validator==1.2.1
     # via pydantic
+emails==0.6
+    # via -r requirements.in
 fastapi==0.75.0
     # via -r requirements.in
 greenlet==1.1.2
@@ -38,18 +54,29 @@ idna==3.3
     # via
     #   anyio
     #   email-validator
+    #   requests
 itsdangerous==2.1.2
     # via -r requirements.in
+jinja2==3.1.2
+    # via -r requirements.in
+lxml==4.9.1
+    # via
+    #   emails
+    #   premailer
 mako==1.2.0
     # via alembic
 markupsafe==2.1.1
-    # via mako
+    # via
+    #   jinja2
+    #   mako
 mypy==0.961
     # via sqlalchemy
 mypy-extensions==0.4.3
     # via mypy
 passlib[bcrypt]==1.7.4
     # via -r requirements.in
+premailer==3.10.0
+    # via emails
 pyasn1==0.4.8
     # via
     #   python-jose
@@ -60,17 +87,24 @@ pydantic[dotenv,email]==1.9.0
     # via
     #   -r requirements.in
     #   fastapi
+python-dateutil==2.8.2
+    # via emails
 python-dotenv==0.20.0
     # via pydantic
 python-jose[cryptography]==3.3.0
     # via -r requirements.in
 python-multipart==0.0.5
     # via -r requirements.in
+requests==2.28.1
+    # via
+    #   emails
+    #   premailer
 rsa==4.8
     # via python-jose
 six==1.16.0
     # via
     #   ecdsa
+    #   python-dateutil
     #   python-multipart
 sniffio==1.2.0
     # via anyio
@@ -89,5 +123,7 @@ typing-extensions==4.1.1
     #   mypy
     #   pydantic
     #   sqlalchemy2-stubs
+urllib3==1.26.9
+    # via requests
 uvicorn==0.17.6
     # via -r requirements.in

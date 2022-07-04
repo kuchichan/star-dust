@@ -17,9 +17,13 @@ backcall==0.2.0
 black==22.3.0
     # via -r requirements-dev.in
 certifi==2022.6.15
-    # via requests
-charset-normalizer==2.0.12
-    # via requests
+    # via
+    #   -c requirements.txt
+    #   requests
+charset-normalizer==2.1.0
+    # via
+    #   -c requirements.txt
+    #   requests
 click==8.0.4
     # via
     #   -c requirements.txt
@@ -100,9 +104,13 @@ pytest==7.1.1
 pytest-asyncio==0.18.3
     # via -r requirements-dev.in
 python-dateutil==2.8.2
-    # via faker
-requests==2.28.0
-    # via -r requirements-dev.in
+    # via
+    #   -c requirements.txt
+    #   faker
+requests==2.28.1
+    # via
+    #   -c requirements.txt
+    #   -r requirements-dev.in
 six==1.16.0
     # via
     #   -c requirements.txt
@@ -129,7 +137,9 @@ typing-extensions==4.1.1
     #   mypy
     #   pylint
 urllib3==1.26.9
-    # via requests
+    # via
+    #   -c requirements.txt
+    #   requests
 wcwidth==0.2.5
     # via prompt-toolkit
 wrapt==1.14.0

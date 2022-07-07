@@ -6,8 +6,8 @@ from emails.template import JinjaTemplate as T
 from star_dust.core.config import settings
 
 
-def email_send(
-    mail_to: Tuple[str, ...],
+def send_email(
+    email_to: Tuple[str, ...],
     subject: Union[str, bytes],
     body: Union[str, bytes],
     environment: Optional[Dict[str, Any]] = None,
@@ -20,7 +20,7 @@ def email_send(
     )
 
     response = message.send(
-        to=mail_to,
+        to=email_to,
         render=environment,
         smtp={
             "host": settings.smtp_host,

@@ -9,7 +9,9 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from star_dust import crud
 from star_dust.core.config import settings
+from star_dust.core.deps import MailingMethod
 from star_dust.db.session import get_db
+from star_dust.mailing.utils import send_email
 from star_dust.schemas.token import TokenPayload
 
 reusable_oauth2 = OAuth2PasswordBearer(
@@ -38,3 +40,6 @@ async def get_current_user(
         )
 
     return user
+
+
+get_mailing_method = MailingMethod(send_email)

@@ -5,7 +5,7 @@ from pydantic.networks import EmailStr
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from star_dust import crud
-from star_dust.api.deps import get_current_user
+from star_dust.api.deps import get_current_user, get_mailing_method
 from star_dust.db.session import get_db
 from star_dust.schemas.user import User, UserCreate
 
@@ -15,6 +15,7 @@ router = APIRouter()
 @router.post("/open-register", response_model=User)
 async def open_registration(
     db: AsyncSession = Depends(get_db),
+    send_email=Depends(get_mailing_method),
     password: str = Body(...),
     email: EmailStr = Body(...),
     nickname: str = Body(None),
@@ -28,6 +29,7 @@ async def open_registration(
 
     user_in = UserCreate(email=email, nickname=nickname, password=password)
     user = await crud.user.create(db, obj_in=user_in)
+    send_email((user.nickname, user.email), subject="Registration", body="Hello")
 
     return user
 

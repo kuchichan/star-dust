@@ -6,7 +6,10 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from star_dust import crud
 from star_dust.api.deps import get_current_user, get_mailing_method
+from star_dust.core.config import settings
+from star_dust.core.security import create_activation_token
 from star_dust.db.session import get_db
+from star_dust.mailing.utils import send_user_registration_link
 from star_dust.schemas.user import User, UserCreate
 
 router = APIRouter()
@@ -29,7 +32,9 @@ async def open_registration(
 
     user_in = UserCreate(email=email, nickname=nickname, password=password)
     user = await crud.user.create(db, obj_in=user_in)
-    send_email((user.nickname, user.email), subject="Registration", body="Hello")
+    activation_token = create_activation_token(user.id)
+    activation_link = f"{settings.server_host}/activate?token={activation_token!r}"
+    send_user_registration_link(user, activation_link, send_email)
 
     return user
 

@@ -1,9 +1,22 @@
+from collections.abc import Callable
+from pathlib import Path
 from typing import Any, Dict, Optional, Tuple, Union
 
 import emails
 from emails.template import JinjaTemplate as T
 
 from star_dust.core.config import settings
+from star_dust.models.user import User
+
+SendMailSignature = Callable[
+    [
+        Tuple[Optional[str], ...],
+        Union[str, bytes],
+        Union[str, bytes],
+        Optional[Dict[str, Any]],
+    ],
+    None,
+]
 
 
 def send_email(
@@ -31,3 +44,19 @@ def send_email(
         },
     )
     return response
+
+
+def send_user_registration_link(
+    user: User, registration_link: str, mailing_method: SendMailSignature
+):
+    with open(
+        Path(settings.email_templates_dir) / "registration.html", encoding="utf-8"
+    ) as f:
+        template = f.read()
+
+    mailing_method(
+        (user.nickname, user.email),
+        "Welcome to Star - Dust!",
+        template,
+        {"nickname": user.nickname, "registration_link": registration_link},
+    )

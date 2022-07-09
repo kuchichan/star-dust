@@ -17,7 +17,9 @@ disable = [
 
 [tool.pytest.ini_options]
 asyncio_mode="auto"
-
+env = [
+    "D:SERVER_HOST = localhost:8000"
+]
 [tool.pyright]
 stubPath = "stubs"
 useLibraryCodeForTypes = true
